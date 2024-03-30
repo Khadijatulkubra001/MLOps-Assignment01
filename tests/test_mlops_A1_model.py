@@ -39,7 +39,7 @@ def test_main_function(capsys):
     # Mocking the load_iris function
     def mocked_load_iris():
         class MockIris:
-            def _init_(self):
+            def __init__(self):  # Fix typo _init_ to __init__
                 self.data = X_train_mock
                 self.target = y_train_mock
 
@@ -77,5 +77,5 @@ def test_main_function(capsys):
     assert np.isclose(expected_accuracy, output_accuracy, atol=1e-5)
 
 
-if _name_ == "_main_":
-    pytest.main([_file_])
+if __name__ == "__main__":  # Fix _name_ to __name__
+    pytest.main([__file__])  # Fix _file_ to __file__
