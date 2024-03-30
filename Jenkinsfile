@@ -18,13 +18,6 @@ pipeline {
             }
         }
 
-        // stage('Unit Testing') {
-        //     steps {
-        //         // Run unit tests
-        //         sh 'python -m unittest discover'
-        //     }
-        // }
-
         stage('Build and Push Docker Image') {
             steps {
                 // Build Docker image
