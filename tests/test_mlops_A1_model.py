@@ -5,7 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-from ..mlops_A1_model import main
+from mlops_A1_model import main
+
 
 
 def test_main_function(capsys):
