@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from mlops_A1_model import main
 
+
 def test_main_function(capsys):
     # Call the main function
     main()
@@ -20,6 +21,7 @@ def test_main_function(capsys):
 
     # Assert that expected accuracy matches with output accuracy
     assert np.isclose(expected_accuracy, output_accuracy, atol=1e-5)
+
 
 if __name__ == "__main__":
     pytest.main([__file__])
