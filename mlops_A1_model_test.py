@@ -1,15 +1,6 @@
-import pytest
-import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from mlops_A1_model import main
-
-
 def test_main_function(capsys):
     # Mocking the iris dataset
+    iris = load_iris()
     X_train_mock = np.array([[5.1, 3.5, 1.4, 0.2],
                               [4.9, 3.0, 1.4, 0.2],
                               [4.7, 3.2, 1.3, 0.2],
@@ -33,26 +24,8 @@ def test_main_function(capsys):
                              [6.1, 2.6, 5.6, 1.4]])
     y_test_mock = np.array([2, 1, 1, 1, 2])
 
-    # Save the original iris dataset to restore later
-    original_load_iris = load_iris
-
-    # Mocking the load_iris function
-    def mocked_load_iris():
-        class MockIris:
-            def _init_(self):
-                self.data = X_train_mock
-                self.target = y_train_mock
-
-        return MockIris()
-
-    # Replace load_iris with mocked_load_iris
-    load_iris = mocked_load_iris
-
     # Call the main function
     main()
-
-    # Restore the original load_iris function
-    load_iris = original_load_iris
 
     # Capture the printed output of the main function
     captured = capsys.readouterr()
@@ -73,9 +46,10 @@ def test_main_function(capsys):
     # Calculate the accuracy
     expected_accuracy = accuracy_score(y_test_mock, y_pred_mock)
 
+    # Debugging print statements
+    print("Expected Accuracy:", expected_accuracy)
+    print("Output Accuracy:", output_accuracy)
+    print("Predictions:", y_pred_mock)
+
     # Assert that expected accuracy matches with output accuracy
     assert np.isclose(expected_accuracy, output_accuracy, atol=1e-5)
-
-
-if _name_ == "_main_":
-    pytest.main([_file_])
