@@ -1,11 +1,14 @@
 import pytest
 import numpy as np
-from sklearn.datasets import load_iris  # Import load_iris
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-from ..mlops_A1_model import main
+
+# Assuming that mlops_A1_model.py is in the same directory as the test file
+from mlops_A1_model import main
+
 
 def test_main_function(capsys):
     # Mocking the iris dataset
