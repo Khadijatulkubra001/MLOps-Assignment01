@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
+
 def main():
     # Load the iris dataset
     iris = load_iris()
