@@ -4,10 +4,6 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.naive_bayes import GaussianNB
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LogisticRegression
 
 # Load the dataset
 data = pd.read_csv('airlines_reviews.csv')
@@ -39,26 +35,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 X_train_transformed = preprocessor.fit_transform(X_train)
 X_test_transformed = preprocessor.transform(X_test)
 
-# Model initialization and training
-models = {
-    'KNN': KNeighborsClassifier(),
-    'SVM': SVC(),
-    'Naive Bayes': GaussianNB(),
-    'Logistic Regression': LogisticRegression(max_iter=1000),
-    'Decision Tree': DecisionTreeClassifier()
-}
+# Model initialization and training (using KNeighborsClassifier)
+model = KNeighborsClassifier()
 
-for name, model in models.items():
-    print(f"\n{30*'='}\n{name}\n{30*'='}")
-    
-    # For the Naive Bayes model, convert the sparse matrix to a dense one
-    if name == 'Naive Bayes':
-        model.fit(X_train_transformed.toarray(), y_train)
-        y_pred = model.predict(X_test_transformed.toarray())
-    else:
-        model.fit(X_train_transformed, y_train)
-        y_pred = model.predict(X_test_transformed)
-    
-    # Evaluation
-    print(confusion_matrix(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+# Fit the model
+model.fit(X_train_transformed, y_train)
+
+# Predictions
+y_pred = model.predict(X_test_transformed)
+
+# Evaluation
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
