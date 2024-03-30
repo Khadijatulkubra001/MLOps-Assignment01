@@ -9,6 +9,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 
+# Load the dataset
 data = pd.read_csv('airlines_reviews.csv')
 
 # Encoding the 'Recommended' column
