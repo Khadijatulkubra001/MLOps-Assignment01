@@ -16,7 +16,8 @@ X = data.drop(['Title', 'Name', 'Review Date', 'Reviews', 'Recommended'], axis=1
 y = data['Recommended']
 
 # Preprocessing for numerical and categorical data
-numerical_cols = ['Seat Comfort', 'Staff Service', 'Food & Beverages', 'Inflight Entertainment', 'Value For Money', 'Overall Rating']
+numerical_cols = ['Seat Comfort', 'Staff Service', 'Food & Beverages', 
+                  'Inflight Entertainment', 'Value For Money', 'Overall Rating']
 categorical_cols = [col for col in X.columns if col not in numerical_cols]
 
 numerical_transformer = StandardScaler()
